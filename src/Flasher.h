@@ -77,10 +77,12 @@ public:
     bool        bootFlash;
     bool        bod;
     bool        bor;
+    int         bootSize;
     
     bool        canBootFlash;
     bool        canBod;
     bool        canBor;
+    bool        canBootSize;
     bool        canChipErase;
     bool        canWriteBuffer;
     bool        canChecksumBuffer;

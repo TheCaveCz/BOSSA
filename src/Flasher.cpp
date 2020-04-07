@@ -68,6 +68,8 @@ FlasherInfo::print()
         printf("BOD          : %s\n", bod ? "true" : "false");
     if (canBor)
         printf("BOR          : %s\n", bor ? "true" : "false");
+    if (canBootSize)
+        printf("Boot size    : %d\n", bootSize);
 }
 
 void
@@ -362,11 +364,13 @@ Flasher::info(FlasherInfo& info)
     info.bootFlash = _flash->getBootFlash();
     info.bod = _flash->getBod();
     info.bor = _flash->getBor();
+    info.bootSize = _flash->getBootSize();
 
     info.canBootFlash = _flash->canBootFlash();
     info.canBod = _flash->canBod();
     info.canBor = _flash->canBor();
     info.canChipErase = _samba.canChipErase();
+    info.canBootSize = _flash->canBootSize();
     info.canWriteBuffer = _samba.canWriteBuffer();
     info.canChecksumBuffer = _samba.canChecksumBuffer();
     info.lockRegions = _flash->getLockRegions();

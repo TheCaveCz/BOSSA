@@ -92,6 +92,12 @@ Flash::setBootFlash(bool enable)
         _bootFlash.set(enable);
 }
 
+void Flash::setBootSize(int bs)
+{
+    if (canBootSize())
+        _bootSize.set(bs);
+}
+
 void
 Flash::loadBuffer(const uint8_t* data, uint16_t bufferSize)
 {

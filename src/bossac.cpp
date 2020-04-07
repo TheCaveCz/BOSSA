@@ -68,6 +68,7 @@ public:
     bool arduinoErase;
     bool help;
     bool version;
+    bool bootSize;
 
     int readArg;
     int offsetArg;
@@ -78,6 +79,7 @@ public:
     string lockArg;
     string unlockArg;
     bool usbPortArg;
+    int bootSizeArg;
 };
 
 BossaConfig::BossaConfig()
@@ -97,6 +99,7 @@ BossaConfig::BossaConfig()
     arduinoErase = false;
     help = false;
     version = false;
+    bootSize = false;
 
     readArg = 0;
     offsetArg = 0;
@@ -104,6 +107,7 @@ BossaConfig::BossaConfig()
     bodArg = 1;
     borArg = 1;
     usbPortArg=1;
+    bootSizeArg=15;
 
     reset = false;
 }
@@ -266,6 +270,12 @@ static Option opts[] =
       { ArgNone },
       "display version info"
     },
+    {
+      'z', "bootsize", &config.bootSize,
+      { ArgRequired, ArgInt, "SIZE", { &config.bootSizeArg } },
+      "protect first part of flash from writing/erasing\n"
+      "bytes to protect = (15-n)*8192"
+    },
 };
 
 int
@@ -326,6 +336,13 @@ main(int argc, char* argv[])
         }
         argc--;
     }
+
+    if (config.bootSize && (config.bootSizeArg < 0 || config.bootSizeArg > 15))
+    {
+        fprintf(stderr, "%s: bootsize must be between 0 and 15\n", argv[0]);
+        return help(argv[0]);
+    }
+
     if (args != argc)
     {
         fprintf(stderr, "%s: extra arguments found\n", argv[0]);
@@ -477,6 +494,12 @@ main(int argc, char* argv[])
         {
             printf("Set brownout reset %s\n", config.borArg ? "true" : "false");
             flash->setBor(config.borArg);
+        }
+
+        if (config.bootSize)
+        {
+            printf("Set boot size %d\n", config.bootSizeArg);
+            flash->setBootSize(config.bootSizeArg);
         }
 
         if (config.security)

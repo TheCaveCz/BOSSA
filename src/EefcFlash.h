@@ -66,6 +66,9 @@ public:
     bool getBootFlash();
     bool canBootFlash() { return true; }
 
+    int getBootSize();
+    bool canBootSize() { return false; }
+
     void writeOptions();
 
     void writePage(uint32_t page);

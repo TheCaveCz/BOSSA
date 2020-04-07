@@ -169,6 +169,12 @@ D2xNvmFlash::getBootFlash()
     return true;
 }
 
+int
+D2xNvmFlash::getBootSize()
+{
+    return 0;
+}
+
 void
 D2xNvmFlash::readUserRow(std::unique_ptr<uint8_t[]>& userRow)
 {

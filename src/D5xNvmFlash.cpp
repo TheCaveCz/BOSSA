@@ -50,6 +50,9 @@
 #define NVM_UP_BOD33_RESET_OFFSET   0x1
 #define NVM_UP_BOD33_RESET_MASK     0x2
 #define NVM_UP_NVM_LOCK_OFFSET      0x8
+#define NVM_UP_BOOT_SIZE_OFFSET     0x3
+#define NVM_UP_BOOT_SIZE_MASK       0x3C
+#define NVM_UP_BOOT_SIZE_SHIFT      2
 
 D5xNvmFlash::D5xNvmFlash(
     Samba& samba,
@@ -163,6 +166,14 @@ D5xNvmFlash::getBootFlash()
     return true;
 }
 
+int
+D5xNvmFlash::getBootSize()
+{
+    uint8_t byte = _samba.readByte(NVM_UP_ADDR + NVM_UP_BOOT_SIZE_OFFSET);
+
+    return (byte & NVM_UP_BOOT_SIZE_MASK) >> NVM_UP_BOOT_SIZE_SHIFT;
+}
+
 void
 D5xNvmFlash::readUserPage(std::unique_ptr<uint8_t[]>& userPage)
 {
@@ -211,6 +222,14 @@ D5xNvmFlash::writeOptions()
                     lockBits[region / 8] |= (1 << (region % 8));
             }
         }
+    }
+
+    if (_bootSize.isDirty())
+    {
+        readUserPage(userPage);
+        int bs = (_bootSize.get() & 0xf) << NVM_UP_BOOT_SIZE_SHIFT;
+        userPage[NVM_UP_BOOT_SIZE_OFFSET] &= ~NVM_UP_BOOT_SIZE_MASK;
+        userPage[NVM_UP_BOOT_SIZE_OFFSET] |= bs;
     }
 
     // Erase and write the user page if modified

@@ -161,6 +161,12 @@ EfcFlash::getBootFlash()
     return (readFSR0() & (1 << 10));
 }
 
+int
+EfcFlash::getBootSize()
+{
+    return 0;
+}
+
 void
 EfcFlash::writeOptions()
 {

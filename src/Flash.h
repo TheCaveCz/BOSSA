@@ -147,6 +147,10 @@ public:
     virtual void setBootFlash(bool enable);
     virtual bool canBootFlash() = 0;
 
+    virtual int getBootSize() = 0;
+    virtual void setBootSize(int bootSize);
+    virtual bool canBootSize() = 0;
+
     virtual void writeOptions() = 0;
 
     virtual void writePage(uint32_t page) = 0;
@@ -171,6 +175,7 @@ protected:
     FlashOption<bool> _bod;
     FlashOption<bool> _bor;
     FlashOption<bool> _security;
+    FlashOption<int> _bootSize;
 
     bool _onBufferA;
     uint32_t _pageBufferA;

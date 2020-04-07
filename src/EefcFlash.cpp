@@ -220,6 +220,12 @@ EefcFlash::getBootFlash()
     return (readFRR0() & (1 << (_canBrownout ? 3 : 1)));
 }
 
+int
+EefcFlash::getBootSize()
+{
+    return 0;
+}
+
 void
 EefcFlash::writeOptions()
 {
