@@ -3,7 +3,7 @@
 #
 # Version
 #
-VERSION=1.7.0-mattairtech-3
+VERSION=1.8.0-electroniccats-1
 WXVERSION=3.0
 
 #
