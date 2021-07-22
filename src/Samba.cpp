@@ -192,6 +192,7 @@ Samba::init()
 		    case ATSAMD21G15A_CHIPID:
 		    case ATSAMD21E18A_CHIPID:
 		    case ATSAMD21E17A_CHIPID:
+            case ATSAMD21E17D_CHIPID:
 		    case ATSAMD21E16A_CHIPID:
                     case ATSAMD21E15A_CHIPID:
 
@@ -738,6 +739,7 @@ Samba::reset(void)
     case ATSAMD21G15A_CHIPID:
     case ATSAMD21E18A_CHIPID:
     case ATSAMD21E17A_CHIPID:
+    case ATSAMD21E17D_CHIPID:
     case ATSAMD21E16A_CHIPID:
     case ATSAMD21E15A_CHIPID:
 
