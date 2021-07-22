@@ -135,7 +135,14 @@ Samba::init()
     if (_debug)
         printf("chipId=%#08x\n", cid);
 
-    uint8_t eproc = (cid >> 5) & 0x7;
+    uint8_t eproc;
+    if(cid==0x10010094)
+    {
+      eproc = 1;
+    }
+    else{
+     eproc = (cid >> 5) & 0x7;
+    }
     uint8_t arch = (cid >> 20) & 0xff;
 
     // Check for ARM7TDMI processor
@@ -192,6 +199,7 @@ Samba::init()
 		    case ATSAMD21G15A_CHIPID:
 		    case ATSAMD21E18A_CHIPID:
 		    case ATSAMD21E17A_CHIPID:
+            case ATSAMD21E17D_CHIPID:
 		    case ATSAMD21E16A_CHIPID:
                     case ATSAMD21E15A_CHIPID:
 
@@ -738,6 +746,7 @@ Samba::reset(void)
     case ATSAMD21G15A_CHIPID:
     case ATSAMD21E18A_CHIPID:
     case ATSAMD21E17A_CHIPID:
+    case ATSAMD21E17D_CHIPID:
     case ATSAMD21E16A_CHIPID:
     case ATSAMD21E15A_CHIPID:
 
