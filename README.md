@@ -1,3 +1,38 @@
+# BOSSA by Electronic Cats
+
+How To Compile
+--------------------------------
+Make sure you have the 'build-essentials' package installed.
+```
+sudo apt-get install build-essentials
+```
+
+You will also need libreadline-dev, and the wxWidgets libraries.
+```
+sudo apt-get install libreadline-dev wx2.8-headers libwxgtk2.8-0 libwxgtk2.8-dev
+```
+
+Now, from the top most directory of the BOSSA checkout, run the following in your bash terminal.
+```
+# Compile the 'bossa' CLI source into the bin folder, use up to four jobs while compiling
+make bin/bossac -j4
+```
+
+```
+# Compile the 'bossa' shell source into the bin folder, use up to four jobs while compiling
+make bin/bossash -j4
+```
+
+## Version Log
+BOSSA 1.8.0-electroniccats-1
+-------------------------------
+
+Adds support for:
+
+ * ATSAMD21E17D (thanks wero1414)
+ * Update name version for electroniccats
+
+ 
 BOSSA 1.7.0-mattairtech-3
 -------------------------------
 
