@@ -135,7 +135,14 @@ Samba::init()
     if (_debug)
         printf("chipId=%#08x\n", cid);
 
-    uint8_t eproc = (cid >> 5) & 0x7;
+    uint8_t eproc;
+    if(cid==0x10010094)
+    {
+      eproc = 1;
+    }
+    else{
+     eproc = (cid >> 5) & 0x7;
+    }
     uint8_t arch = (cid >> 20) & 0xff;
 
     // Check for ARM7TDMI processor
