@@ -58,11 +58,8 @@ jobs:
       fail-fast: false
       matrix:
         include:
-          - { icon: '⬛', sys: mingw32, env: i686 }
-          - { icon: '🟦', sys: mingw64, env: x86_64 }
-    defaults:
-      run:
-        shell: msys2 {0}
+          - { icon: '⬛', sys: MINGW32, env: i686 }
+          - { icon: '🟦', sys: MINGW64, env: x86_64 }
     steps:
     - name: '🧰 Checkout'
       uses: actions/checkout@v2
@@ -74,6 +71,7 @@ jobs:
         install: git base-devel binutils mingw-w64-${{matrix.env}}-toolchain
 
     - name: '🚧 Build package'
+      shell: msys2 {0}
       run: |
         git reset --hard
         make bossac
