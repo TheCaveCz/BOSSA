@@ -71,13 +71,18 @@ jobs:
       uses: rlespinasse/github-slug-action@v3.x            
     - name: get linux multilib
       if: ${{matrix.os == 'ubuntu-latest'}}
-      run: sudo apt-get update; sudo apt-get install gcc-multilib g++-multilib
+      run: sudo apt-get update; sudo apt-get install gcc-multilib g++-multilib libreadline-dev libwxgtk3.0-gtk3-dev -y
+    - name: Install dependencies MacOS
+      if: ${{matrix.os == 'macOS-latest'}}
+      run: |
+          brew update
+          brew install wxmac
     - name: get msys2
       uses: msys2/setup-msys2@v2
       if: ${{matrix.os == 'windows-latest'}}
       with:
           msystem: ${{ matrix.msystem }}
-          install: git base-devel binutils mingw-w64-${{ matrix.arch }}-toolchain
+          install: git base-devel binutils mingw-w64-${{ matrix.arch }}-toolchain mingw-w64-{{ matrix.arch }}-wxWidgets
           release: false
     - name: make (win)
       if: ${{matrix.os == 'windows-latest'}}
@@ -89,11 +94,6 @@ jobs:
             cp bin/bossac.exe bossa-${{env.GITHUB_REF_SLUG}}/bossac.exe
             zip bin/bossac.zip bossa-${{env.GITHUB_REF_SLUG}}/*
             ls bossa-${{env.GITHUB_REF_SLUG}}
-    - name: Install dependencies MacOS
-      if: ${{matrix.os == 'macOS-latest'}}
-      run: |
-          brew update
-          brew install wxmac
     - name: make (not win)
       if: ${{matrix.os != 'windows-latest'}}
       run: |
