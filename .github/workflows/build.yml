@@ -44,8 +44,6 @@ jobs:
     - name: '🚧 Build package'
       run: |
         make -j
-        make install
-        bin/bossac --help
 
     - name: '📤 Upload artifact: package'
       uses: actions/upload-artifact@v2
