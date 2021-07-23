@@ -81,10 +81,7 @@ jobs:
     - name: '🚧 Build package'
       run: |
         makepkg-mingw --noconfirm --noprogressbar -sCLf
-    - run: |
-        set MSYSTEM=MINGW64
-        msys2 make -j
-        msys2 make install
+        pacman --noconfirm -U mingw-w64-*-any.pkg.tar.xz
 
     - name: '📤 Upload artifact: package'
       uses: actions/upload-artifact@v2
