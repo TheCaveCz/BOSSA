@@ -68,7 +68,7 @@ jobs:
       uses: msys2/setup-msys2@v2
       with:
         msystem: ${{matrix.sys}}
-        install: git mingw-w64-${{matrix.env}}-wxmsw3.1 mingw-w64-${{matrix.env}}-wxWidgets base-devel binutils mingw-w64-${{matrix.env}}-toolchain
+        install: git mingw-w64-${{matrix.env}}-wxWidgets base-devel binutils mingw-w64-${{matrix.env}}-toolchain
 
     - name: '🚧 Build package'
       shell: msys2 {0}
