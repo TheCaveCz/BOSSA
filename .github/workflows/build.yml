@@ -74,7 +74,7 @@ jobs:
       shell: msys2 {0}
       run: |
         git reset --hard
-        make bossac
+        make -j
 
     - name: '📤 Upload artifact: package'
       uses: actions/upload-artifact@v2
