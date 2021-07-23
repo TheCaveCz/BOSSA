@@ -63,7 +63,6 @@ jobs:
       with:
         msystem: MSYS
     - name: '🚧 Build package'
-    - shell: msys2 {0}
       run: |
         makepkg-mingw --noconfirm --noprogressbar -sCLf
         pacman --noconfirm -U mingw-w64-*-any.pkg.tar.xz
