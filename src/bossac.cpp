@@ -288,8 +288,7 @@ main(int argc, char* argv[])
               );
         printf("\nOptions:\n");
 	cmd.usage(stdout);
-	printf("\nReport bugs to <support@mattairtech.com>\n");
-        printf("\nReport bugs to <bugs@shumatech.com>\n");
+	printf("\nReport bugs to <support@electroniccats.com>\n");
         return 1;
     }
 
