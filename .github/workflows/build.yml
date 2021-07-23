@@ -80,8 +80,10 @@ jobs:
 
     - name: '🚧 Build package'
       run: |
+        cd examples/pkgbuild
         makepkg-mingw --noconfirm --noprogressbar -sCLf
-        pacman --noconfirm -U mingw-w64-*-any.pkg.tar.xz
+        
+    - run: pacman --noconfirm -U mingw-w64-*-any.pkg.tar.xz
     - run: |
         set MSYSTEM=MINGW64
         msys2do make -j
