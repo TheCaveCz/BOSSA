@@ -52,27 +52,21 @@ jobs:
     runs-on: windows-latest
     strategy:
       fail-fast: false
-      matrix:
-        include:
-          - { icon: '⬛', sys: mingw32, env: i686 }
-          - { icon: '🟦', sys: mingw64, env: x86_64 }
     steps:
     - uses: actions/checkout@v2
-    
     - uses: msys2/setup-msys2@v2
       with:
-        msystem: ${{ matrix.sys }}
-    - name: '🚧 Build package'
-      run: |
+        msystem: MSYS
+    - run: |
         makepkg-mingw --noconfirm --noprogressbar -sCLf
-        
+        pacman --noconfirm -U mingw-w64-*-any.pkg.tar.xz
     - run: |
         set MSYSTEM=MINGW32
         msys2 make -j
         msys2 make install
         bin/bossac --help
 
-    - uses: actions/upload-artifact@v2
+    - uses: actions/upload-artifact@v1
       if: always()
       with:
         name: windows
