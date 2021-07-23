@@ -4,7 +4,7 @@
 # Version
 #
 VERSION=1.1.0-electroniccats-1
-WXVERSION=3.1
+WXVERSION=3.0
 
 #
 # Source files
@@ -80,6 +80,7 @@ endif
 # OS X rules
 #
 ifeq ($(OS),Darwin)
+WXVERSION=3.1
 COMMON_SRCS+=PosixSerialPort.cpp OSXPortFactory.cpp
 COMMON_CXXFLAGS=-arch x86_64 -mmacosx-version-min=10.9
 COMMON_LDFLAGS=-arch x86_64 -mmacosx-version-min=10.9
