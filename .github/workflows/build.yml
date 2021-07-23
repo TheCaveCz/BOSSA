@@ -56,15 +56,17 @@ jobs:
       run:
         shell: msys2 {0}
     steps:
+    - name: '🧰 Checkout'
+      uses: actions/checkout@v2
 
-    - uses: actions/checkout@v2
-    - uses: msys2/setup-msys2@v2
+    - name: 'Setup MSYS2'
+      uses: msys2/setup-msys2@v2
       with:
         msystem: MSYS
         update: true
 
     - name: '🚧 Build package'
-    - run: |
+      run: |
         makepkg-mingw --noconfirm --noprogressbar -sCLf
         pacman --noconfirm -U mingw-w64-*-any.pkg.tar.xz
     - run: |
@@ -73,7 +75,8 @@ jobs:
         msys2 make install
         bin/bossac --help
 
-    - uses: actions/upload-artifact@v2
+    - name: '📤 Upload artifact: package'
+      uses: actions/upload-artifact@v2
       if: always()
       with:
         name: windows
