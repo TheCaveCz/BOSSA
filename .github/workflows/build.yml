@@ -58,7 +58,7 @@ jobs:
       fail-fast: false
     steps:
     - uses: actions/checkout@v2
-    - uses: numworks/setup-msys2@v1
+    - uses: numworks/setup-msys2@vmaster
       with:
         msystem: MSYS32
     - run: msys2do pacman --noconfirm -S -noconfirm --noprogressbar
