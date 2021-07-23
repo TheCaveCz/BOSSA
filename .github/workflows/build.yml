@@ -76,7 +76,7 @@ jobs:
 
     - name: '🚧 Build package 1'
       run: |
-        makepkg-mingw -sCLfc --noconfirm --noprogressbar
+        pacman --noconfirm -S -noconfirm --noprogressbar
         pacman --noconfirm -U mingw-w64-*-any.pkg.tar.xz
 
     - name: '🚧 Build package 2'
