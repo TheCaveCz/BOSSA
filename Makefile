@@ -64,6 +64,8 @@ endif
 # Linux rules
 #
 ifeq ($(OS),Linux)
+WXVERSION=3.0
+
 COMMON_SRCS+=PosixSerialPort.cpp LinuxPortFactory.cpp
 COMMON_LIBS=-Wl,--as-needed
 WX_LIBS+=-lX11
