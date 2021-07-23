@@ -30,6 +30,7 @@ BOSSA 1.1.0-electroniccats-1
 Adds support for:
 
  * ATSAMD21E17D (thanks wero1414)
+ * SAMR34
  * Update name version for electroniccats
 
  
