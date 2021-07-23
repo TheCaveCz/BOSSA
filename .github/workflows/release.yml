@@ -81,7 +81,7 @@ jobs:
       shell: msys2 {0}
       run:  |
             git reset --hard
-            make bossac.exe
+            make bin/bossac.exe
             mkdir bossa-${{env.GITHUB_REF_SLUG}}
             cp bin/bossac.exe bossa-${{env.GITHUB_REF_SLUG}}/bossac.exe
             zip bin/bossac.zip bossa-${{env.GITHUB_REF_SLUG}}/*
