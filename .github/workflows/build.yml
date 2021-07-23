@@ -62,7 +62,6 @@ jobs:
           git
           base-devel
           tree
-          mingw-w64-${{ matrix.env }}-toolchain
     - run: |
         makepkg-mingw --noconfirm --noprogressbar -sCLf
         pacman --noconfirm -U mingw-w64-*-any.pkg.tar.xz
