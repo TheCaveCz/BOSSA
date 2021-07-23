@@ -82,6 +82,11 @@ jobs:
       run: |
         makepkg-mingw --noconfirm --noprogressbar -sCLf
         pacman --noconfirm -U mingw-w64-*-any.pkg.tar.xz
+    - run: |
+        set MSYSTEM=MINGW32
+        msys2do make -j
+        msys2do make install
+        bin/bossac --help
 
     - name: '📤 Upload artifact: package'
       uses: actions/upload-artifact@v2
