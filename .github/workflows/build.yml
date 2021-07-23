@@ -68,15 +68,11 @@ jobs:
       uses: msys2/setup-msys2@v2
       with:
         msystem: ${{matrix.sys}}
-        install: git base-devel binutils mingw-w64-${{matrix.env}}-toolchain
+        install: git mingw-w64-x86_64-wxmsw3.1 mingw-w64-x86_64-wxWidgets mingw-w64-i686-wxWidgets base-devel binutils mingw-w64-${{matrix.env}}-toolchain
 
     - name: '🚧 Build package'
       shell: msys2 {0}
-      run: | 
-        pacman --noconfirm -S -noconfirm --noprogressbar
-        pacman --noconfirm -U mingw-w64-*-any.pkg.tar.xz
-    
-    - run: |
+      run: |
         git reset --hard
         make bossac
 
