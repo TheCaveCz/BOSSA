@@ -56,19 +56,35 @@ jobs:
     runs-on: windows-latest
     strategy:
       fail-fast: false
+      matrix:
+        include:
+          - { icon: '⬛', sys: mingw32, env: i686 }
+          - { icon: '🟦', sys: mingw64, env: x86_64 }
+    defaults:
+      run:
+        shell: msys2 {0}
     steps:
-    - uses: actions/checkout@v2
-    - uses: numworks/setup-msys2@master
+    - name: '🧰 Checkout'
+      uses: actions/checkout@v2
+
+    - name: 'Setup MSYS'
+      uses: msys2/setup-msys2@v2
       with:
-        msystem: MSYS32
-    - run: msys2do pacman --noconfirm -S -noconfirm --noprogressbar
-    - run: msys2do pacman --noconfirm -U mingw-w64-*-any.pkg.tar.xz
-    - run: |
-        set MSYSTEM=MINGW32
-        msys2do make -j
-        msys2do make install
-        bin/bossac --help
-    - uses: actions/upload-artifact@v2
+        msystem: ${{matrix.sys}}
+        update: true
+        install: mingw-w64-${{matrix.env}}-toolchain
+
+    - name: '🚧 Build package 1'
+      run: |
+        pacman --noconfirm -U mingw-w64-*-any.pkg.tar.xz
+
+    - name: '🚧 Build package 2'
+      run: |
+        set MSYSTEM=MINGW64
+        msys2 make -j
+
+    - name: '📤 Upload artifact: package'
+      uses: actions/upload-artifact@v2
       if: always()
       with:
         name: windows
