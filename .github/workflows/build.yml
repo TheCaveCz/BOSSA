@@ -64,6 +64,11 @@ jobs:
       with:
         msystem: MSYS
         update: true
+        install: >
+          git
+          base-devel
+          tree
+          mingw-w64-${{ matrix.env }}-toolchain
 
     - name: '🚧 Build package'
       run: |
