@@ -54,13 +54,21 @@ jobs:
       fail-fast: false
     steps:
     - uses: actions/checkout@v2
+    
     - uses: msys2/setup-msys2@v2
       with:
         msystem: MSYS
     - name: '🚧 Build package'
+    - shell: msys2 {0}
       run: |
-        cd examples/pkgbuild
         makepkg-mingw --noconfirm --noprogressbar -sCLf
+        pacman --noconfirm -U mingw-w64-*-any.pkg.tar.xz
+    - run: |
+        set MSYSTEM=MINGW32
+        msys2 make -j
+        msys2 make install
+        bin/bossac --help
+
     - uses: actions/upload-artifact@v2
       if: always()
       with:
