@@ -4,7 +4,7 @@
 # Version
 #
 VERSION=1.1.0-electroniccats-1
-WXVERSION=3.0
+WXVERSION=3.1
 
 #
 # Source files
