@@ -1,6 +1,9 @@
 name: Release
 
-on: [push, pull_request]
+on:
+  create:
+    tags:
+      - '*'
   
 jobs:    
   create_release:
