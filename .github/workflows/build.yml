@@ -11,12 +11,15 @@ jobs:
     strategy:
       fail-fast: false
     steps:
-    - uses: actions/checkout@v2
+    - name: '🧰 Checkout'
+      uses: actions/checkout@v2
+
     - name: Install dependencies
       run: |
         sudo apt-get update
         sudo apt-get install libwxgtk3.0-gtk3-dev libreadline-dev -y
-    - name: Build
+    
+    - name: '🚧 Build package'
       run: |
         make -j
         make install
@@ -32,17 +35,22 @@ jobs:
     strategy:
       fail-fast: false
     steps:
-    - uses: actions/checkout@v2
+    - name: '🧰 Checkout'
+      uses: actions/checkout@v2
+
     - name: Install dependencies
       run: |
         brew update
         brew install wxmac
-    - name: Build
+
+    - name: '🚧 Build package'
       run: |
         make -j
         make install
         bin/bossac --help
-    - uses: actions/upload-artifact@v2
+
+    - name: '📤 Upload artifact: package'
+      uses: actions/upload-artifact@v2
       if: always()
       with:
         name: macos
@@ -68,7 +76,7 @@ jobs:
           git
           base-devel
           tree
-          mingw-w64-${{ matrix.env }}-toolchain
+          mingw-w64-x86_64-toolchain
 
     - name: '🚧 Build package'
       run: |
