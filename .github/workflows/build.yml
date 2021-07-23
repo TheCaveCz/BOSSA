@@ -57,13 +57,10 @@ jobs:
     - uses: msys2/setup-msys2@v2
       with:
         msystem: MSYS
-    - run: msys2do pacman --noconfirm -S -noconfirm --noprogressbar
-    - run: msys2do pacman --noconfirm -U mingw-w64-*-any.pkg.tar.xz
-    - run: |
-        set MSYSTEM=MINGW32
-        msys2do make -j
-        msys2do make install
-        bin/bossac --help
+    - name: '🚧 Build package'
+      run: |
+        cd examples/pkgbuild
+        makepkg-mingw --noconfirm --noprogressbar -sCLf
     - uses: actions/upload-artifact@v2
       if: always()
       with:
