@@ -51,39 +51,4 @@ jobs:
       with:
         name: macos
         path: bin
-
-  windows:
-    runs-on: windows-latest
-    strategy:
-      fail-fast: false
-    defaults:
-      run:
-        shell: msys2 {0}
-    steps:
-    - name: '🧰 Checkout'
-      uses: actions/checkout@v2
-
-    - name: 'Setup MSYS2'
-      uses: msys2/setup-msys2@v2
-      with:
-        msystem: mingw64
-        update: true
-        install: >
-          git
-          base-devel
-          mingw-w64-x86_64-toolchain
-
-    - name: '🚧 Build package'
-      run: pacman --noconfirm -S -noconfirm --noprogressbar
-      
-    - run: pacman --noconfirm -U mingw-w64-*-any.pkg.tar.xz
-    - run: |
-        set MSYSTEM=MINGW64
-        msys2do make -j
-
-    - name: '📤 Upload artifact: package'
-      uses: actions/upload-artifact@v2
-      if: always()
-      with:
-        name: windows
-        path: bin
+        
