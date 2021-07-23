@@ -50,14 +50,6 @@ jobs:
             suffix: -win32
             ext: .exe
             archive_ext: .zip
-          - os: windows-latest
-            artifact_name: bin/bossac
-            asset_name: bossac
-            arch: x86_64
-            msystem: MINGW64
-            suffix: -win64
-            archive_ext: .zip
-            ext: .exe
           - os: macos-latest
             artifact_name: bin/bossac
             asset_name: bossac
