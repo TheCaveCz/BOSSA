@@ -97,7 +97,7 @@ jobs:
     - name: make (not win)
       if: ${{matrix.os != 'windows-latest'}}
       run: |
-          make bossac ${{matrix.make_flags}}
+          make -j
           mkdir bossa-${{env.GITHUB_REF_SLUG}}
           cp bin/bossac bossa-${{env.GITHUB_REF_SLUG}}/bossac
           tar -cjf bin/bossac.tar.bz2 bossa-${{env.GITHUB_REF_SLUG}}
