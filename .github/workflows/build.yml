@@ -56,10 +56,7 @@ jobs:
     runs-on: windows-latest
     strategy:
       fail-fast: false
-      matrix:
-        include:
-          - { icon: '⬛', sys: MINGW32, env: i686 }
-          - { icon: '🟦', sys: MINGW64, env: x86_64 }
+    
     steps:
     - name: '🧰 Checkout'
       uses: actions/checkout@v2
@@ -67,8 +64,8 @@ jobs:
     - name: 'Setup MSYS'
       uses: msys2/setup-msys2@v2
       with:
-        msystem: ${{matrix.sys}}
-        install: git mingw-w64-${{matrix.env}}-wxWidgets base-devel binutils mingw-w64-${{matrix.env}}-toolchain
+        msystem: MINGW32
+        install: git mingw-w64-i686-wxWidgets base-devel binutils mingw-w64-i686-toolchain
 
     - name: '🚧 Build package'
       shell: msys2 {0}
