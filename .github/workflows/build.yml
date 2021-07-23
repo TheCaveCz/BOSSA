@@ -86,7 +86,6 @@ jobs:
         set MSYSTEM=MINGW64
         msys2 make -j
         msys2 make install
-        bin/bossac --help
 
     - name: '📤 Upload artifact: package'
       uses: actions/upload-artifact@v2
