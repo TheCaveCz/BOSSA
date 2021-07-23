@@ -22,8 +22,6 @@ jobs:
     - name: '🚧 Build package'
       run: |
         make -j
-        make install
-        bin/bossac --help
     - uses: actions/upload-artifact@v2
       if: always()
       with:
@@ -82,7 +80,7 @@ jobs:
       run: |
         cd examples/pkgbuild
         makepkg-mingw --noconfirm --noprogressbar -sCLf
-        
+
     - run: pacman --noconfirm -U mingw-w64-*-any.pkg.tar.xz
     - run: |
         set MSYSTEM=MINGW64
