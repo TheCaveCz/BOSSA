@@ -273,11 +273,11 @@ AboutDialog::AboutDialog( wxWindow* parent, wxWindowID id, const wxString& title
 	m_staticline2 = new wxStaticLine( this, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxLI_HORIZONTAL );
 	_topBoxSizer->Add( m_staticline2, 0, wxEXPAND | wxALL, 5 );
 	
-	_mattairtechText = new wxStaticText( this, wxID_ANY, wxT("This build maintained by MattairTech (support@mattairtech.com)."), wxDefaultPosition, wxDefaultSize, 0 );
+	_mattairtechText = new wxStaticText( this, wxID_ANY, wxT("This build maintained by ElectronicCats (support@electroniccats.com)."), wxDefaultPosition, wxDefaultSize, 0 );
 	_mattairtechText->Wrap( -1 );
 	_topBoxSizer->Add( _mattairtechText, 0, wxALL, 5 );
 	
-	_mattairtechHyperlink = new wxHyperlinkCtrl( this, wxID_ANY, wxT("http://www.mattairtech.com/"), wxT("http://www.mattairtech.com"), wxDefaultPosition, wxDefaultSize, wxHL_DEFAULT_STYLE );
+	_mattairtechHyperlink = new wxHyperlinkCtrl( this, wxID_ANY, wxT("http://www.mattairtech.com/"), wxT("http://www.electroniccats.com"), wxDefaultPosition, wxDefaultSize, wxHL_DEFAULT_STYLE );
 	_topBoxSizer->Add( _mattairtechHyperlink, 0, wxALL, 5 );
 	
 	m_staticline4 = new wxStaticLine( this, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxLI_HORIZONTAL );
