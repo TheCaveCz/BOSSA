@@ -75,9 +75,7 @@ jobs:
           mingw-w64-x86_64-toolchain
 
     - name: '🚧 Build package'
-      run: |
-        cd examples/pkgbuild
-        makepkg-mingw --noconfirm --noprogressbar -sCLf
+      run: makepkg-mingw --noconfirm --noprogressbar -sCLf
 
     - run: pacman --noconfirm -U mingw-w64-*-any.pkg.tar.xz
     - run: |
