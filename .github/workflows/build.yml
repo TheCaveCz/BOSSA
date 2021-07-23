@@ -25,7 +25,7 @@ jobs:
     - uses: actions/upload-artifact@v2
       if: always()
       with:
-        name: linux
+        name: bossac-1.1.0-electroniccats-1-x86_64-linux-gnu.tar.gz
         path: bin
 
   macos:
@@ -49,6 +49,5 @@ jobs:
       uses: actions/upload-artifact@v2
       if: always()
       with:
-        name: macos
+        name: bossac-1.1.0-electroniccats-1-x86_64-apple-darwin.tar.gz
         path: bin
-        
