@@ -65,7 +65,7 @@ jobs:
           mingw-w64-${{ matrix.env }}-toolchain
     - run: |
         makepkg-mingw --noconfirm --noprogressbar -sCLf
-        pacman --noconfirm -U mingw-w32-*-any.pkg.tar.xz
+        pacman --noconfirm -U mingw-w64-*-any.pkg.tar.xz
     - run: |
         set MSYSTEM=MINGW32
         msys2 make -j
