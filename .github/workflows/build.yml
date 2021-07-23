@@ -71,17 +71,12 @@ jobs:
       uses: msys2/setup-msys2@v2
       with:
         msystem: ${{matrix.sys}}
-        update: true
-        install: mingw-w64-${{matrix.env}}-toolchain
+        install: git base-devel binutils mingw-w64-${{matrix.env}}-toolchain
 
-    - name: '🚧 Build package 1'
+    - name: '🚧 Build package'
       run: |
-        pacman --noconfirm -U mingw-w64-*-any.pkg.tar.xz
-
-    - name: '🚧 Build package 2'
-      run: |
-        set MSYSTEM=MINGW64
-        msys2 make -j
+        git reset --hard
+        make bossac
 
     - name: '📤 Upload artifact: package'
       uses: actions/upload-artifact@v2
