@@ -24,7 +24,7 @@ make bin/bossash -j4
 ```
 
 ## Version Log
-BOSSA 1.8.0-electroniccats-1
+BOSSA 1.1.0-electroniccats-1
 -------------------------------
 
 Adds support for:
