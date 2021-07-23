@@ -15,7 +15,7 @@ jobs:
     - name: Install dependencies
       run: |
         sudo apt-get update
-        sudo apt-get install libgtk3.0-gtk3-dev libreadline-dev -y
+        sudo apt-get install libwxgtk3.0-gtk3-dev libreadline-dev -y
     - name: Build
       run: |
         make -j
