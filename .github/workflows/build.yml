@@ -56,6 +56,10 @@ jobs:
     runs-on: windows-latest
     strategy:
       fail-fast: false
+      matrix:
+        include:
+          - { icon: '⬛', sys: mingw32, env: i686 }
+          - { icon: '🟦', sys: mingw64, env: x86_64 }
     defaults:
       run:
         shell: msys2 {0}
@@ -63,19 +67,17 @@ jobs:
     - name: '🧰 Checkout'
       uses: actions/checkout@v2
 
-    - name: 'Setup MSYS2'
+    - name: 'Setup MSYS'
       uses: msys2/setup-msys2@v2
       with:
         msystem: MSYS
         update: true
-        install: >
-          git
-          mingw-w64-x86_64-toolchain
+        install: mingw-w64-${{matrix.env}}-toolchain
 
     - name: '🚧 Build package 1'
       run: |
-      makepkg-mingw -sCLfc --noconfirm --noprogressbar
-      pacman --noconfirm -U mingw-w64-*-any.pkg.tar.xz
+        makepkg-mingw -sCLfc --noconfirm --noprogressbar
+        pacman --noconfirm -U mingw-w64-*-any.pkg.tar.xz
 
     - name: '🚧 Build package 2'
       run: |
