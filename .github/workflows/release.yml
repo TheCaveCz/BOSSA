@@ -37,14 +37,14 @@ jobs:
             asset_name: bossac
             arch: amd64
             suffix: -linux-amd64
-            archive_ext: .tar.bz2
+            archive_ext: .tar.gz
           - os: ubuntu-latest
             artifact_name: bin/bossac
             asset_name: bossac
             arch: i686
             suffix: -linux-i686
             make_flags: "EXTRA_FLAGS=-m32"
-            archive_ext: .tar.bz2
+            archive_ext: .tar.gz
           - os: windows-latest
             artifact_name: bin/bossac
             asset_name: bossac
@@ -58,7 +58,7 @@ jobs:
             asset_name: bossac
             arch: amd64
             suffix: -mac
-            archive_ext: .tar.bz2
+            archive_ext: .tar.gz
 
     steps:      
     - uses: actions/checkout@v2
@@ -95,7 +95,7 @@ jobs:
           make -j
           mkdir bossa-${{env.GITHUB_REF_SLUG}}
           cp bin/bossac bossa-${{env.GITHUB_REF_SLUG}}/bossac
-          tar -cjf bin/bossac.tar.bz2 bossa-${{env.GITHUB_REF_SLUG}}
+          tar -czvf bin/bossac.tar.gz bossa-${{env.GITHUB_REF_SLUG}}
           ls bossa-${{env.GITHUB_REF_SLUG}}
     - name: Upload file (Binary)
       uses: actions/upload-release-asset@v1
